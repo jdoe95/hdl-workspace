@@ -7,15 +7,17 @@ module board
 	input logic osc,         // IC9 100 MHz crystal oscillator at pin E3
 	output logic [15:0] led  // on-board LEDs connected to the FPGA
 );
-	logic clock;     // 280 MHz master clock
-	logic clock_en;  // master clock enable
+	logic master_clock;     // 200 MHz master clock
+	logic clock_en;         // global clock enable
+	logic master_reset;     // master reset signal
+	logic slow_clock;       // 20 MHz slow clock
 
-	clock_provider clock_provider_inst (
+	clock_provider clock_provider_inst
+	(
 		.clock_in(osc),
-		.clock_out_en(clock_en),
-		.clock_out(clock)
+		.clock_ready(clock_en),
+		.clock_out0(master_clock),
+		.clock_out1(slow_clock)
 	);
-	
-	assign led[0] = clock_en;
 
 endmodule
