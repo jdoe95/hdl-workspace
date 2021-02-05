@@ -1,3 +1,4 @@
+`include "timescale.sv"
 module toggler
 (
 	input logic clock,
