@@ -35,7 +35,7 @@ module clock_prescaler #(
 			clock_out_en <= counter ^ xor_mask;
 			xor_mask <= counter;
 		end else begin
-			// intentionally left blank
+			clock_out_en <= 'b0;
 		end
 	end
 endmodule
